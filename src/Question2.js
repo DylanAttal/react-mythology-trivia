@@ -25,7 +25,7 @@ class Question2 extends Component {
             data-answer={1}
             className={Mob.answers[1] === 1 ? 'incorrect-answer' : ''}
           >
-            {Mob.game[1]['incorrect_answers'][1]}
+            {Mob.game[1]['incorrect_answers'][0]}
           </button>
           <button
             onClick={Mob.answerQuestion}

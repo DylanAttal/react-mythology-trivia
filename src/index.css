@@ -28,6 +28,30 @@ main {
 
 h1 {
   text-align: center;
+  font-size: 3rem;
+}
+
+.start-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+
+.start {
+  margin-top: 6rem;
+  height: 6rem;
+  width: 22rem;
+  font-size: 2.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: rgb(34, 34, 187);
+  color: white;
+}
+
+.start:hover {
+  background-color: rgb(27, 135, 185);
 }
 
 h4 {
@@ -36,9 +60,10 @@ h4 {
 
 .question-container {
   width: 70vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -59,4 +84,15 @@ h4 {
 
 .incorrect-answer {
   background-color: red;
+}
+
+.next {
+  background-color: rgb(34, 34, 187);
+  color: white;
+  width: 8rem !important;
+  font-size: 0.9rem !important;
+}
+
+.next:hover {
+  background-color: rgb(27, 135, 185);
 }

@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { decorate, computed, observable } from 'mobx'
+import { observer } from 'mobx-react'
+
 import './App.css'
+
+import Mob from './Mob'
+import StartGame from './StartGame'
 import Question1 from './Question1'
 import Question2 from './Question2'
 import Question3 from './Question3'
@@ -10,22 +17,6 @@ import Question5 from './Question5'
 class App extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      answers: [],
-      game: [
-        { question: '', incorrect_answers: [''], correct_answer: '' },
-        { question: '', incorrect_answers: [''], correct_answer: '' },
-        { question: '', incorrect_answers: [''], correct_answer: '' },
-        { question: '', incorrect_answers: [''], correct_answer: '' },
-        { question: '', incorrect_answers: [''], correct_answer: '' },
-        { question: '', incorrect_answers: [''], correct_answer: '' },
-        { question: '', incorrect_answers: [''], correct_answer: '' },
-        { question: '', incorrect_answers: [''], correct_answer: '' },
-        { question: '', incorrect_answers: [''], correct_answer: '' },
-        { question: '', incorrect_answers: [''], correct_answer: '' }
-      ]
-    }
   }
 
   componentDidMount = () => {
@@ -34,60 +25,28 @@ class App extends Component {
         'https://opentdb.com/api.php?amount=10&category=20&difficulty=easy&type=multiple'
       )
       .then(response => {
-        this.setState({
-          game: response.data.results
-        })
+        Mob.game = response.data.results
       })
       .catch(error => console.log(error))
   }
 
-  answerQuestion = event => {
-    const questionIndex = parseInt(event.target.dataset.question)
-    const answerIndex = parseInt(event.target.dataset.answer)
-
-    let answers = this.state.answers
-    answers[questionIndex] = answerIndex
-
-    this.setState({
-      answers: answers
-    })
-    console.log(answers)
-  }
-
   render() {
     return (
-      <main>
-        <header>
-          <h1>Mythology Trivia!</h1>
-        </header>
-        <Question1
-          game={this.state.game}
-          answers={this.state.answers}
-          answerQuestion={this.answerQuestion}
-        />
-        <Question2
-          game={this.state.game}
-          answers={this.state.answers}
-          answerQuestion={this.answerQuestion}
-        />
-        <Question3
-          game={this.state.game}
-          answers={this.state.answers}
-          answerQuestion={this.answerQuestion}
-        />
-        <Question4
-          game={this.state.game}
-          answers={this.state.answers}
-          answerQuestion={this.answerQuestion}
-        />
-        <Question5
-          game={this.state.game}
-          answers={this.state.answers}
-          answerQuestion={this.answerQuestion}
-        />
-      </main>
+      <Router>
+        <main>
+          <header>
+            <h1>Mythology Trivia!</h1>
+          </header>
+          <Route path="/" exact component={StartGame} />
+          <Route path="/question1" exact component={Question1} />
+          <Route path="/question2" exact component={Question2} />
+          <Route path="/question3" exact component={Question3} />
+          <Route path="/question4" exact component={Question4} />
+          <Route path="/question5" exact component={Question5} />
+        </main>
+      </Router>
     )
   }
 }
 
-export default App
+export default observer(App)

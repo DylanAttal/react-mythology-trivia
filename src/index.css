@@ -13,11 +13,17 @@ code {
     monospace;
 }
 
+header {
+  background-color: beige;
+  width: 100%;
+}
+
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: lightgray;
 }
 
 h1 {
@@ -29,7 +35,7 @@ h4 {
 }
 
 .question-container {
-  width: 50vw;
+  width: 70vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,7 +43,7 @@ h4 {
 }
 
 .question-container button {
-  width: 30%;
+  width: 40%;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
